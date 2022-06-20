@@ -1,3 +1,0 @@
-Raw data:  {'Name': 'Michael', 'Surname': 'Corleone', 'Highest_bidder': False}
-Edited data:  {'Name': 'Michael', 'Surname': 'Corleone', 'Highest_bidder': True}
-Edited data:  None

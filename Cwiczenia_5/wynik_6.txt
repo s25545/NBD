@@ -1,9 +1,0 @@
-curl -i -XDELETE http://localhost:8098/buckets/s25545/keys/1.2
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0HTTP/1.1 204 No Content
-Vary: Accept-Encoding
-Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
-Date: Sat, 14 May 2022 16:00:02 GMT
-Content-Type: application/json
-Content-Length: 0
