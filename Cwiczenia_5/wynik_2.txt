@@ -1,0 +1,15 @@
+curl -i -XGET http://localhost:8098/buckets/s25545/keys/1.1
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    77  100    77    0     0   6183      0 --:--:-- --:--:-- --:--:--  7000HTTP/1.1 200 OK
+X-Riak-Vclock: a85hYGBgzGDKBVI8+xkWvt+l2WLMwDDHMYMpkTGPlUFy5bvbfFkA
+Vary: Accept-Encoding
+Server: MochiWeb/1.1 WebMachine/1.10.9 (cafe not found)
+Link: </buckets/s25545>; rel="up"
+Last-Modified: Tue, 10 May 2022 09:15:05 GMT
+ETag: "1Nsmi83ENCJK7FouKiiGwo"
+Date: Wed, 11 May 2022 18:08:52 GMT
+Content-Type: application/json
+Content-Length: 77
+
+{"Title": "The Godfather", "Author": "Mario Puzo", "Price": 55, "Pages": 602}
