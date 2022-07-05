@@ -22,3 +22,34 @@ RETURN p
 MATCH (flight:Flight)-[origin:ORIGIN]->(airport:Airport)
 RETURN airport, count(origin) AS NumberOfFlights
 ORDER BY NumberOfFlights
+
+6.
+MATCH p = (lax:Airport {name:"LAX" })<-[:ORIGIN]-(:Flight)-[:ORIGIN|DESTINATION*..10]->(destination:Airport)
+WHERE REDUCE(start = 0, n IN [x IN NODES(p) WHERE 'Flight' IN LABELS(x)] | start + [(n)<-[:ASSIGN]-(ticket) | ticket.price][0]) < 3000
+RETURN p
+
+7.
+MATCH p = (lax:Airport {name:"LAX" })<-[:ORIGIN]-(:Flight)-[:ORIGIN|DESTINATION*..10]->(day:Airport {name: "DAY"})
+WITH p, REDUCE(start = 0, n IN [x IN NODES(p) WHERE 'Flight' IN LABELS(x)] | start + [(n)<-[:ASSIGN]-(ticket) | ticket.price][0]) as ticketPrice
+RETURN p, ticketPrice
+ORDER BY ticketPrice ASC
+
+8.
+MATCH p = (lax:Airport {name:"LAX" })<-[:ORIGIN]-(:Flight)-[:ORIGIN|DESTINATION*..10]->(day:Airport {name: "DAY"})
+WITH p, REDUCE(start = 0, n IN [x IN NODES(p) WHERE 'Flight' IN LABELS(x)] | start + [(n)<-[:ASSIGN]-(ticket) | ticket.price][0]) as ticketPrice
+RETURN p, ticketPrice
+ORDER BY ticketPrice ASC LIMIT 1
+
+9.
+MATCH (airport1:Airport)<-[:ORIGIN]-(flight:Flight) 
+MATCH (airport2:Airport)<-[:DESTINATION]-(flight:Flight) 
+UNWIND [airport1, airport2] as connection
+RETURN flight.airline AS airline, count(distinct connection) AS numberOfConnections
+ORDER BY numberOfConnections DESC
+
+10.
+MATCH p = (airport1:Airport)<-[relation1:ORIGIN]-(flight1:Flight)-[relation2:DESTINATION]->(airport2:Airport)<-[relation3:ORIGIN]-(flight2:Flight)-[relation4:DESTINATION]->(airport3:Airport)
+WHERE NOT(airport1 = airport2) AND NOT(airport1 = airport3) AND NOT(airport2 = airport3)
+WITH p, REDUCE(start = 0, n IN [x IN NODES(p) WHERE 'Flight' IN LABELS(x)] | start + [(n)<-[:ASSIGN]-(ticket) | ticket.price][0]) AS ticketPrice
+RETURN p, ticketPrice
+ORDER BY ticketPrice ASC LIMIT 1
